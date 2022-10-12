@@ -1,0 +1,59 @@
+.patient-container {
+    .patient-header {
+        padding: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .patient-header-title {
+            margin-left: 34px;
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 43px;
+            line-height: 32px;
+        }
+    }
+
+    .patient-table {
+        margin-top: 30px;
+
+        .patient-table-container {
+            font-family: 'Lato';
+            background: transparent;
+
+            table {
+                border-collapse: collapse;
+            }
+
+            th.mat-header-cell {
+                font-family: 'Montserrat';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 32px;
+                /* identical to box height, or 267% */
+
+                letter-spacing: 0.857143px;
+                text-transform: uppercase;
+
+                color: #A3ACBF;
+            }
+
+            tr.mat-row {
+                background: #FFFFFF;
+                border: 1px solid #D7DBE6;
+            }
+
+            td, th {
+                text-align: center !important;
+                vertical-align: middle !important;
+            }
+            
+            .mat-sort-header-container {
+                justify-content: center !important;
+            }
+          
+        }
+    }
+}

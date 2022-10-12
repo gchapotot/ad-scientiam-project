@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/store';
-import { getPatientsData } from 'src/app/store/actions/patient.action';
+import { getPatientsData, unpairPatient } from 'src/app/store/actions/patient.action';
 import { selectPatients$ } from 'src/app/store/selectors/patient.selector';
 import { Patient } from './model/Patient.model';
 
@@ -21,6 +21,10 @@ export class PatientComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(getPatientsData());
+  }
+
+  public onUnpairPatient(id: number): void{
+    this.store.dispatch(unpairPatient({id: id}));
   }
 
 }

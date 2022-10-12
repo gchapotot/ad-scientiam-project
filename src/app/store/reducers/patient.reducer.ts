@@ -16,6 +16,12 @@ export const reducer = createReducer(initialState,
     }),
     on(patientActions.getPatientsDataSuccess, (state, { patients }) => {
         return { ...state, patients };
+    }),
+    on(patientActions.unpairPatient, (state, { id }) => {
+        const newState = JSON.parse(JSON.stringify(state));
+        const index = newState.patients.findIndex((patient: Patient) => patient.id === id);
+        newState.patients[index].pairing = false;
+        return newState;
     })
 );
 export function patientReducer(state: patientState | undefined, action: Action): patientState {

@@ -1,0 +1,102 @@
+.patient-folder-container {
+    font-family: 'Montserrat' !important;
+    font-style: normal;
+    color: #3D3D40;
+
+    .patient-folder-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 30px;
+        align-items: center;
+        border-bottom: 1px solid #E0E3F0;
+
+
+        .patient-folder-header-left {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            .patient-folder-header-title {
+                font-family: 'Montserrat';
+                font-style: normal;
+                display: flex;
+                flex-direction: column;
+                margin-left: 20px;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 17px;
+                letter-spacing: 0.595745px;
+
+                .patient-folder-name {
+                    margin-top: 10px;
+                    font-weight: 400;
+                    font-size: 43px;
+                    line-height: 32px;
+                }
+            }
+        }
+
+        .patient-folder-close-button {
+            height: 39px;
+            border: 1px solid #4B75F5;
+            border-radius: 4px;
+            color: #4B75F5;
+        }
+    }
+
+    .patient-folder-body {
+        margin-top: 30px;
+
+        .patient-folder-body-title {
+            font-weight: 500;
+            font-size: 30px;
+            line-height: 37px;
+            letter-spacing: 0.5px;
+        }
+
+        .patient-info {
+            padding: 30px 0px;
+
+            .patient-info-title {
+                font-weight: 500;
+                font-size: 18px;
+            }
+
+            .patient-info-data {
+                margin-top: 20px;
+
+                .custom-label {
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 23px;
+                    letter-spacing: 0.5px;
+                    color: #7C808C;
+                }
+
+                .form-group {
+                    padding: 10px;
+                }
+
+                .patient-info-gender {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+
+        }
+
+        .patient-walk {
+            .patient-info-data {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .patient-walk-tab {
+                img {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

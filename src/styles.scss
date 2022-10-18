@@ -30,6 +30,9 @@ $theme: mat.define-light-theme((color: (primary: $theme-primary,
 // that you are using.
 @include mat.all-component-themes($theme);
 
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
 html,
 body {
     height: 100%;
@@ -53,11 +56,31 @@ body {
     font-weight: 500;
     font-size: 11px;
     line-height: 21px;
-    /* identical to box height, or 191% */
-
+    vertical-align: middle;
     text-align: center;
     letter-spacing: 1px;
     text-transform: uppercase;
     padding: 5px 10px;
     color: #2E5BFF;
+}
+
+.mat-raised-button.mat-primary {
+    background: #2E5BFF;
+    border: 1px solid #3762EA;
+    border-radius: 19.5px;
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 21px;
+    vertical-align: middle;
+    text-align: center;
+    letter-spacing: 1px;
+    padding: 5px 20px;
+    color: #FFFFFF;
+
+}
+
+.invalid-feedback {
+    display: block;
 }

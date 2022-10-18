@@ -1,0 +1,163 @@
+<div class="patient-folder-container">
+    <div mat-dialog-title>
+        <div class="patient-folder-header">
+            <div class="patient-folder-header-left">
+                <img src="assets/img/img_patient_f.png" width="80" height="80">
+                <div class="patient-folder-header-title">
+                    <div>DOSSIER PATIENT</div>
+                    <div class="patient-folder-name">{{patient!.firstName + ' ' + patient!.lastName}}</div>
+                </div>
+            </div>
+            <button mat-stroked-button color="primary" (click)="onCloseFolder()"
+                class="patient-folder-close-button">Fermer le détail</button>
+        </div>
+    </div>
+    <div mat-dialog-content>
+        <div class="patient-folder-body">
+            <div class="patient-folder-body-title">
+                Informations générales
+            </div>
+            <form *ngIf="patientForm" [formGroup]="patientForm">
+                <div class="patient-info patient-general-info">
+                    <div class="patient-info-title">Informations personnelles</div>
+                    <div class="patient-info-data">
+                        <div style="display: flex;">
+                            <div class="form-group col-6 col-lg-4">
+                                <label class="custom-label" for="lastName">Nom</label>
+                                <input type="text" class="form-control" formControlName="lastName"
+                                    [ngClass]="{'is-invalid': submitted && f['lastName'].errors}">
+                                <div *ngIf="submitted && f['lastName'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['lastName'].errors['required']">Champ obligatoire</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-6 col-lg-4">
+                                <label class="custom-label" for="SEPType">Type de SEP</label>
+                                <ng-select id="SEPType" formControlName="SEPType" [clearable]="false"
+                                    [ngClass]="{'is-invalid': submitted && f['SEPType'].errors}">
+                                    <ng-option *ngFor="let type of sepTypes" [value]="type">{{type}}</ng-option>
+                                </ng-select>
+                                <div *ngIf="submitted && f['SEPType'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['SEPType'].errors['required']">Champ obligatoire</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display: flex;">
+                            <div class="form-group col-6 col-lg-4">
+                                <label class="custom-label" for="firstName">Prénom</label>
+                                <input type="text" class="form-control" formControlName="firstName"
+                                    [ngClass]="{'is-invalid': submitted && f['firstName'].errors}">
+                                <div *ngIf="submitted && f['firstName'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['firstName'].errors['required']">Champ obligatoire</div>
+                                </div>
+                            </div>
+                            <div class="form-group col-6 col-lg-4">
+                                <label class="custom-label" for="scoreEDSS">Score EDSS</label>
+                                <input type="number" step="0.2" class="form-control" formControlName="scoreEDSS"
+                                    [ngClass]="{'is-invalid': submitted && f['scoreEDSS'].errors}">
+                                <div *ngIf="submitted && f['scoreEDSS'].errors" class="invalid-feedback">
+                                    <div *ngIf="f['scoreEDSS'].errors['required']">Champ obligatoire</div>
+                                    <div
+                                        *ngIf="f['scoreEDSS'].errors['pattern'] || f['scoreEDSS'].errors['min'] || f['scoreEDSS'].errors['max']">
+                                        Score EDSS est un nombre entre 0 et 2 (pas de 0.2)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group patient-info-gender">
+                            <label class="custom-label" for="gender">Genre</label>
+                            <div style="display: flex; margin-top: 10px;">
+                                <div class="form-check  form-check-inline">
+                                    <input class="form-check-input" type="radio" id="f" value="f"
+                                        formControlName="gender">
+                                    <label class="form-check-label" for="f">
+                                        Femme
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" value="m" id="m"
+                                        formControlName="gender">
+                                    <label class="form-check-label" for="m">
+                                        Homme
+                                    </label>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="patient-info patient-risk">
+                    <div class="patient-info-title">Facteurs de riques secondaires</div>
+                    <div class="patient-info-data">
+                        <div class="form-group">
+                            <label class="custom-label" for="factors">Existence de maladies neurologiques dans le cadre
+                                familial</label>
+                            <div style="display: flex; flex-direction: column; margin-top: 10px;">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="firstDegree" value="firstDegree"
+                                        formControlName="firstDegree" (change)="checkCheckboxRules('firstDegree')">
+                                    <label class="form-check-label" for="firstDegree">
+                                        Oui, au 1er degré (parents, frères et soeurs)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="secondDegree"
+                                        id="secondDegree" formControlName="secondDegree"
+                                        (change)="checkCheckboxRules('secondDegree')">
+                                    <label class="form-check-label" for="secondDegree">
+                                        Oui, au 2ème degré (grands-parents, cousins)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="noDegree" id="noDegree"
+                                        formControlName="noDegree" (change)="checkCheckboxRules('noDegree')">
+                                    <label class="form-check-label" for="noDegree">
+                                        Non
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="notSure" id="notSure"
+                                        formControlName="notSure" (change)="checkCheckboxRules('notSure')">
+                                    <label class="form-check-label" for="notSure">
+                                        Ne sait
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="patient-info patient-walk">
+                    <div class="patient-info-title">Aides à la marche</div>
+                    <div class="patient-info-data">
+                        <div class="patient-walk-tab">
+                            <ng-container *ngIf="f['walkingStickAid'].value; else walkingStickAidUnactive">
+                                <img src="assets/img/canne_active.png" (click)="onClickImage('walkingStickAid')">
+                            </ng-container>
+                            <ng-template #walkingStickAidUnactive>
+                                <img src="assets/img/canne_unactive.png" (click)="onClickImage('walkingStickAid')">
+                            </ng-template>
+                        </div>
+                        <div class="patient-walk-tab">
+                            <ng-container *ngIf="f['crutchesAid'].value; else crutchesAidUnactive">
+                                <img src="assets/img/two_cannes_active.png" (click)="onClickImage('crutchesAid')">
+                            </ng-container>
+                            <ng-template #crutchesAidUnactive>
+                                <img src="assets/img/two_cannes_unactive.png" (click)="onClickImage('crutchesAid')">
+                            </ng-template>
+                        </div>
+                        <div class="patient-walk-tab">
+                            <ng-container *ngIf="f['walkWithCaregiverAid'].value; else walkWithCaregiverAidUnactive">
+                                <img src="assets/img/help_active.png" (click)="onClickImage('walkWithCaregiverAid')">
+                            </ng-container>
+                            <ng-template #walkWithCaregiverAidUnactive>
+                                <img src="assets/img/help_unactive.png" (click)="onClickImage('walkWithCaregiverAid')">
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="primary" (click)="onValidate()">Enregister<mat-icon style="margin-left: 30px;">
+                arrow_forward</mat-icon></button>
+    </div>
+</div>

@@ -1,4 +1,4 @@
-import { createReducer, on, Action, State } from "@ngrx/store";
+import { createReducer, on, Action } from "@ngrx/store";
 import { Patient } from "src/app/features/patient/model/Patient.model";
 import * as patientActions from '../actions/patient.action';
 
@@ -17,10 +17,17 @@ export const reducer = createReducer(initialState,
     on(patientActions.getPatientsDataSuccess, (state, { patients }) => {
         return { ...state, patients };
     }),
-    on(patientActions.unpairPatient, (state, { id }) => {
+    on(patientActions.unpairPatient, (state) => {
+        return { ...state };
+    }),
+    on(patientActions.savePatient, (state) => {
+        return { ...state };
+    }),
+    on(patientActions.savePatientSuccess, (state, { id, patient }) => {
+        console.log(id, patient)
         const newState = JSON.parse(JSON.stringify(state));
         const index = newState.patients.findIndex((patient: Patient) => patient.id === id);
-        newState.patients[index].pairing = false;
+        newState.patients[index] = patient;
         return newState;
     })
 );

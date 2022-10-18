@@ -18,6 +18,19 @@
     .patient-table {
         margin-top: 30px;
 
+        .search-bar-container {
+            margin-bottom: 20px;
+
+            .search-bar {
+                background: #FFFFFF;
+                box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.208151);
+                border-radius: 37px;
+                color: #8893AA;
+                padding-left: 30px;
+                height: 50px;
+            }
+        }
+
         .patient-table-container {
             font-family: 'Lato';
             background: transparent;
@@ -32,11 +45,8 @@
                 font-weight: 500;
                 font-size: 12px;
                 line-height: 32px;
-                /* identical to box height, or 267% */
-
                 letter-spacing: 0.857143px;
                 text-transform: uppercase;
-
                 color: #A3ACBF;
             }
 
@@ -45,15 +55,15 @@
                 border: 1px solid #D7DBE6;
             }
 
-            td, th {
+            td,
+            th {
                 text-align: center !important;
                 vertical-align: middle !important;
             }
-            
+
             .mat-sort-header-container {
                 justify-content: center !important;
             }
-          
         }
     }
 }

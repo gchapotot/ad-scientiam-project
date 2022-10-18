@@ -12,4 +12,8 @@ export class PatientService {
   public getPatientsData(): Observable<Patient[]> {
     return this.http.get<any>(`${environment.API_URL}/patients`);
   }
+
+  public savePatient(id: number, data: Patient): Observable<Patient> {
+    return this.http.put<any>(`${environment.API_URL}/patients/${id}`, data);
+  }
 }
